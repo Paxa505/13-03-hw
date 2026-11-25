@@ -95,9 +95,10 @@ UDP (-sU)	UDP-датаграмму	Возможен UDP-ответ либо от
 Для отображения обмена использовался фильтр:
 
 ip.addr == 192.168.56.101 && tcp.port == 21
-Место для скриншота 01_syn.png.
+<img width="1274" height="879" alt="01_syn" src="https://github.com/user-attachments/assets/80b823d2-e0c2-4fbc-ae18-295263bdd7a2" />
 
-Рисунок 1 — SYN-сканирование TCP-порта 21 Metasploitable: последовательность SYN → SYN, ACK → RST.
+
+SYN-сканирование TCP-порта 21 Metasploitable: последовательность SYN → SYN, ACK → RST.
 
 2. FIN-сканирование
 При FIN-сканировании сканер отправляет TCP-пакет с флагом FIN без предварительного установления соединения.
@@ -111,9 +112,9 @@ ip.addr == 192.168.56.101 && tcp.port == 21
 ip.addr == 192.168.56.101 && tcp.port == 554 && frame.number >= 2031
 Ограничение по номеру кадра исключает из отображения более ранние пакеты этого файла захвата.
 
-Место для скриншота 02_fin.png.
+<img width="1229" height="779" alt="02_fin" src="https://github.com/user-attachments/assets/7d1c2001-aba1-4350-802f-1b14cd291bf5" />
 
-Рисунок 2 — FIN-сканирование TCP-порта 554 Metasploitable: исходящая проба FIN и ответ RST, ACK.
+FIN-сканирование TCP-порта 554 Metasploitable: исходящая проба FIN и ответ RST, ACK.
 
 3. Xmas-сканирование
 При Xmas-сканировании сканер отправляет TCP-пакет с одновременно установленными флагами FIN, PSH и URG.
@@ -127,9 +128,8 @@ ip.addr == 192.168.56.101 && tcp.port == 554 && frame.number >= 2031
 Для отображения обмена использовался фильтр:
 
 ip.addr == 192.168.56.101 && tcp.port == 554
-Место для скриншота 03_xmas.png.
-
-Рисунок 3 — Xmas-сканирование TCP-порта 554 Metasploitable: проба с флагами FIN, PSH и URG и ответ RST, ACK.
+<img width="1283" height="844" alt="03_xmas" src="https://github.com/user-attachments/assets/c07304b8-32ea-4fb2-a1a9-4d1594f4f72d" />
+Xmas-сканирование TCP-порта 554 Metasploitable: проба с флагами FIN, PSH и URG и ответ RST, ACK.
 
 4. UDP-сканирование
 При UDP-сканировании сканер отправляет UDP-датаграммы. UDP не использует процедуру установления соединения и TCP-флаги.
@@ -156,9 +156,9 @@ ip.addr == 192.168.56.101 && tcp.port == 554
 Для просмотра UDP- и ICMP-трафика использовался фильтр:
 
 ip.addr == 192.168.56.101 && (udp || icmp)
-Место для скриншота 04_udp.png.
+<img width="1281" height="788" alt="04_udp" src="https://github.com/user-attachments/assets/8d5b09a4-e1eb-4194-bc43-8b37ca456bbc" />
 
-Рисунок 4 — Исходящие пробы при UDP-сканировании Metasploitable и раскрытый заголовок UDP-датаграммы на порт 514.
+Исходящие пробы при UDP-сканировании Metasploitable и раскрытый заголовок UDP-датаграммы на порт 514.
 
 ICMP-ответ на UDP-пробу
 В пакете №20 Metasploitable 192.168.56.101 отправляет Kali 192.168.56.102 ICMP-сообщение со следующими значениями:
@@ -170,9 +170,10 @@ Code: 3 — Port unreachable
 Для поиска таких сообщений использовался фильтр:
 
 ip.src == 192.168.56.101 && icmp.type == 3 && icmp.code == 3
-Место для скриншота 05_udp_icmp.png.
 
-Рисунок 5 — ICMP-ответ Destination Unreachable, Type 3, Code 3 на UDP-пробу порта 514 Metasploitable.
+<img width="1281" height="804" alt="05_udp_icmp" src="https://github.com/user-attachments/assets/560b635b-4074-4599-b5c1-9ec38a009280" />
+
+ICMP-ответ Destination Unreachable, Type 3, Code 3 на UDP-пробу порта 514 Metasploitable.
 
 Вывод
 В ходе работы выполнено сканирование Metasploitable в режимах SYN, FIN, Xmas и UDP. Сетевой трафик записан и проанализирован в Wireshark.
